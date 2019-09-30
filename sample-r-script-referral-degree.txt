@@ -1,3 +1,4 @@
+setwd("<PATH_TO_WORKING_DIRECTORY>")
 dados <- read.delim("./sample_adjacency_matrix.txt", sep=" ", header=F)
 
 
