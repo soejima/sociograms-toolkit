@@ -1,41 +1,41 @@
 dados <- read.delim("./sample_adjacency_matrix.txt", sep=" ", header=F)
 
 
-##graph with vertex labels:#
-m = data.matrix(dados)#
-library(igraph)#
-g <- graph.adjacency(m, mode="directed", weighted=T)#
-g <- simplify(g)#
-#
-V(g)$degree <- degree(g, mode = "in")#
+##graph with vertex labels:
+m = data.matrix(dados)
+library(igraph)
+g <- graph.adjacency(m, mode="directed", weighted=T)
+g <- simplify(g)
+
+V(g)$degree <- degree(g, mode = "in")
 V(g)$label <- ifelse(degree(g, mode='in') >= 3, V(g)$name, NA)
-V(g)$color <- "grey"#
-V(g)[ degree >= 5 ]$color <- "red"#
-V(g)[ degree == 4 | degree == 3 ]$color <- "orange"#
+V(g)$color <- "grey"
+V(g)[ degree >= 5 ]$color <- "red"
+V(g)[ degree == 4 | degree == 3 ]$color <- "orange"
 	
-#
-E(g)[ weight == 1 ]$color <- "red"#
-E(g)[ weight == 2 ]$color <- "orange"#
-E(g)[ weight == 3 ]$color <- "yellow"#
-set.seed(3952)#
+
+E(g)[ weight == 1 ]$color <- "red"
+E(g)[ weight == 2 ]$color <- "orange"
+E(g)[ weight == 3 ]$color <- "yellow"
+set.seed(3952)
 plot(g, layout=layout.fruchterman.reingold, vertex.color=V(g)$color, edge.arrow.size = 0.25, edge.label.color="grey")
 
 
-##referral-degree-graph:#
-m = data.matrix(dados)#
-library(igraph)#
-g <- graph.adjacency(m, mode="directed", weighted=T)#
-g <- simplify(g)#
-#
-V(g)$degree <- degree(g, mode = "in")#
-V(g)$label <- V(g)$degree
-V(g)$color <- "grey"#
-V(g)[ degree >= 5 ]$color <- "red"#
-V(g)[ degree == 4 | degree == 3 ]$color <- "orange"#
+##referral-degree-graph:
+m = data.matrix(dados)
+library(igraph)
+g <- graph.adjacency(m, mode="directed", weighted=T)
+g <- simplify(g)
 
-#
-E(g)[ weight == 1 ]$color <- "red"#
-E(g)[ weight == 2 ]$color <- "orange"#
-E(g)[ weight == 3 ]$color <- "yellow"#
-set.seed(3952)#
+V(g)$degree <- degree(g, mode = "in")
+V(g)$label <- V(g)$degree
+V(g)$color <- "grey"
+V(g)[ degree >= 5 ]$color <- "red"
+V(g)[ degree == 4 | degree == 3 ]$color <- "orange"
+
+
+E(g)[ weight == 1 ]$color <- "red"
+E(g)[ weight == 2 ]$color <- "orange"
+E(g)[ weight == 3 ]$color <- "yellow"
+set.seed(3952)
 plot(g, layout=layout.fruchterman.reingold, vertex.color=V(g)$color, edge.arrow.size = 0.25, edge.label.color="grey")
